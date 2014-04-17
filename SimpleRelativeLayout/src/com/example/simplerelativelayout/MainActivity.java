@@ -1,18 +1,16 @@
-package com.example.simplelinearlayout2;
+package com.example.simplerelativelayout;
 
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.LinearLayout;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.os.Build;
 
 public class MainActivity extends ActionBarActivity {
@@ -53,47 +51,25 @@ public class MainActivity extends ActionBarActivity {
 	 */
 	public static class PlaceholderFragment extends Fragment {
 
+		private Spinner month;
+
 		public PlaceholderFragment() {
 		}
 
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
 				Bundle savedInstanceState) {
-			// View rootView = inflater.inflate(R.layout.fragment_main,
-			// container, false);
+			View rootView = inflater.inflate(R.layout.fragment_main, container,
+					false);
 
-			LinearLayout ll = new LinearLayout(getActivity());
-			ll.setOrientation(LinearLayout.VERTICAL);
-			ll.setPadding(15, 15, 15, 15);
+			month = (Spinner) rootView.findViewById(R.id.month);
 
-			EditText toEditText = new EditText(getActivity());
-			toEditText.setHint("To");
+			String[] list = getResources().getStringArray(R.array.month);
+			ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+					getActivity(), android.R.layout.simple_spinner_item, list);
+			month.setAdapter(adapter);
 
-			EditText subjectEditText = new EditText(getActivity());
-			subjectEditText.setHint("Subject");
-
-			EditText messageEditText = new EditText(getActivity());
-			messageEditText.setHint("Message");
-			messageEditText.setGravity(Gravity.TOP);
-
-			ll.addView(toEditText);
-			ll.addView(subjectEditText);
-			ll.addView(messageEditText);
-
-			LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) messageEditText
-					.getLayoutParams();
-			params.weight = 1;
-
-			Button button = new Button(getActivity());
-			button.setText("send");
-			ll.addView(button);
-
-			LinearLayout.LayoutParams params2 = (LinearLayout.LayoutParams) button
-					.getLayoutParams();
-			params2.width = LinearLayout.LayoutParams.WRAP_CONTENT;
-			params2.gravity = Gravity.RIGHT;
-
-			return ll;
+			return rootView;
 		}
 	}
 
