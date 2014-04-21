@@ -10,4 +10,19 @@
         <item>June</item>
     </string-array>
 
+    <integer-array name="date_max"> 
+        <item>31</item>
+        <item>28</item>
+        <item>31</item>
+        <item>30</item>
+        <item>31</item>
+        <item>30</item>
+        <item>31</item>
+        <item>31</item>
+        <item>30</item>
+        <item>31</item>
+        <item>30</item>
+        <item>31</item>
+
+    </integer-array>
 </resources>
